@@ -9,11 +9,13 @@ import ProductDetails from "./pages/ProductDetails/ProductDetails";
 import Login from "./pages/Login/Login";
 import { ProductContext } from "./store/productContext";
 import { useEffect, useReducer } from "react";
+import Filter from "./components/Filter/Filter";
 
 const initialState = {
   loading: true,
   error: "",
   products: [],
+  productData: [],
   cart: [],
   fav: [],
 };
@@ -22,8 +24,14 @@ const reducer = (state, action) => {
     case "DATA_RECEIVED":
       return {
         ...state,
+        productData: action.payload,
         products: action.payload,
         loading: false,
+      };
+    case "FILTER":
+      return {
+        ...state,
+        products: action.payload,
       };
     case "ERROR":
       return {
@@ -53,7 +61,7 @@ const reducer = (state, action) => {
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  const { cart, products, fav } = state;
+  const { cart, productData, products, fav } = state;
 
   const getData = async () => {
     try {
@@ -69,8 +77,12 @@ function App() {
     getData();
   }, []);
 
+  const categories = productData?.map((item) => item.category);
+  const uniqCat = [...new Set(categories)];
   return (
-    <ProductContext.Provider value={{ cart, dispatch, products, fav }}>
+    <ProductContext.Provider
+      value={{ cart, dispatch, productData, products, fav, uniqCat }}
+    >
       <div className="App" style={{ width: "900px", margin: "0 auto" }}>
         <Navbar />
         <Routes>

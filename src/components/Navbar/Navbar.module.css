@@ -10,6 +10,13 @@
   margin-bottom: 20px;
 }
 
+.search input {
+  padding: 10px 20px;
+  outline: none;
+  border: 0.5px solid gray;
+  border: none;
+}
+
 .nav ul {
   display: flex;
   gap: 20px;

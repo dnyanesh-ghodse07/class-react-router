@@ -1,15 +1,35 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { ProductContext } from "../../store/productContext";
 import styles from "./Navbar.module.css";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
-  const { cart } = useContext(ProductContext);
+  const { cart, productData, dispatch } = useContext(ProductContext);
+  const [query, setQuery] = useState("");
+
+  const handleChange = (e) => {
+    setQuery(e.target.value);
+  };
+
+  const search = () => {
+    const filtered = productData?.filter((item) =>
+      item.title.toLowerCase().includes(query.trim().toLowerCase())
+    );
+    console.log(filtered);
+    dispatch({ type: "FILTER", payload: filtered });
+  };
+
+  useEffect(() => {
+    search();
+  }, [query]);
 
   return (
     <nav className={styles.nav}>
       <div className="brand">
         <Link to="/products">E-COM</Link>
+      </div>
+      <div className={styles.search}>
+        <input type="search" placeholder="Search" onChange={handleChange} />
       </div>
       <div>
         <ul>

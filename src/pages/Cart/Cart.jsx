@@ -9,6 +9,21 @@ import styles from "./Cart.module.css";
 const Cart = () => {
   const { cart } = useContext(ProductContext);
 
+  const noOfItem = cart.reduce(function (results, org) {
+    (results[org.id] = results[org.id] || []).push(org);
+    return results;
+  }, {});
+
+  const a = [];
+
+  for (const key in noOfItem) {
+    a.push({
+      id: noOfItem[key][0]?.id,
+      n: noOfItem[key]?.length,
+    });
+  }
+
+  console.log(noOfItem[1]?.length);
   const totalPrice = cart.reduce((acc, cur) => acc + cur.price, 0);
 
   console.log(totalPrice);
@@ -17,7 +32,11 @@ const Cart = () => {
     <div className={styles.cart}>
       <div className={styles.cartItems}>
         {cart?.map((item) => (
-          <CartItems key={item.id} item={item} />
+          <CartItems
+            key={item.id}
+            item={item}
+            noOfItem={noOfItem[item.id]?.length}
+          />
         ))}
       </div>
 
