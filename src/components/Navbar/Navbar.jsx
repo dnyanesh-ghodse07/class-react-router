@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
+import { ProductContext } from "../../store/productContext";
 import styles from "./Navbar.module.css";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
+  const { cart } = useContext(ProductContext);
+
   return (
     <nav className={styles.nav}>
       <div className="brand">
@@ -17,7 +20,14 @@ const Navbar = () => {
             <Link to="/favorite">Favorite</Link>
           </li>
           <li>
-            <Link to="/cart">Cart</Link>
+            <Link to="/cart">
+              <sup
+                style={{ background: "#000", color: "#fff", padding: "10px" }}
+              >
+                {cart?.length}
+              </sup>
+              Cart
+            </Link>
           </li>
           <li>
             <Link to="/login">Login</Link>

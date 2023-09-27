@@ -1,0 +1,14 @@
+.fav {
+  height: 200px;
+  display: flex;
+  gap: 20px;
+}
+
+.fav .img img {
+  height: 150px;
+}
+
+.fav .btn {
+  margin-top: 20px;
+  padding: 10px;
+}

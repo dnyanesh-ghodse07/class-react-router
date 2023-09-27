@@ -1,0 +1,24 @@
+.cart {
+  display: flex;
+  justify-content: center;
+  height: 80vh;
+  border: 1px solid #eee;
+  padding: 10px;
+}
+
+.cartItems {
+  flex: 2;
+  padding: 0 20px;
+  height: 100%;
+  overflow-y: scroll;
+}
+
+.cartDetails {
+  flex: 1;
+}
+
+.cartSummary {
+  padding: 20px;
+  height: 100%;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}

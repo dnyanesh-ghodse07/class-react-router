@@ -1,0 +1,13 @@
+.productDetails {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  width: 900px;
+  height: 80vh;
+  margin: 0 auto;
+}
+
+.addBtn {
+  margin-top: 20px;
+  padding: 10px 20px;
+}

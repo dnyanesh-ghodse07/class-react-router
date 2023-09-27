@@ -1,0 +1,11 @@
+.cartItem {
+  height: 150px;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+.cartItem img {
+  padding: 20px;
+  height: 150px;
+}
